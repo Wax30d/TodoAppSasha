@@ -1,6 +1,14 @@
 from django.shortcuts import render, redirect
 from .models import Todo
 from django.views.decorators.http import require_http_methods
+from rest_framework import viewsets
+from .serializers import TodoSerializer
+
+
+class TodoViewSet(viewsets.ModelViewSet):
+    queryset = Todo.objects.all()
+    serializer_class = TodoSerializer
+
 
 def index(request):
     todos = Todo.objects.all()
